@@ -3,3 +3,11 @@
     justify-content: space-around;
     padding: 10px 0;
 }
+
+.Cancel:hover{
+    cursor: pointer;
+}
+
+.Cancel{
+    color: darkred;
+}
