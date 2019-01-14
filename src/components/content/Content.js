@@ -13,6 +13,7 @@ class Content extends Component {
         for(let key in res.data){
           data.push(res.data[key]);
         }
+        console.log(res.data);
         this.setState({items: data.slice(-1)[0]})
       })
       .catch(error => {
@@ -98,10 +99,10 @@ class Content extends Component {
         id: Math.random()
       });
       console.log('Committing...');
+      items = items.filter(e => e.id !== 'EMPTY');
       axios.post('https://szymon-burger.firebaseio.com/Items.json', items)
         .then(() => {
           console.log('Commit OK');
-          items = items.filter(e => e.id !== 'EMPTY');
           this.setState({items: items});
         })
         .catch((error) => {
@@ -117,11 +118,10 @@ class Content extends Component {
     if(items.length === 0){
       items.push({name: 'EMPTY', id: "EMPTY"})
     }
-    console.log(items);
+    console.log('Committing...');
     axios.post('https://szymon-burger.firebaseio.com/Items.json', items)
       .then(() => {
         console.log('Commit OK');
-        console.log(items);
         this.setState({items:  items});
       })
       .catch((error) => {
